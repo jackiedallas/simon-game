@@ -1,5 +1,6 @@
 "use strict"
 
+// global variables
 let gamePattern = [];
 let buttonColors = ["red", "blue", "green", "yellow"];
 let redSound = new Audio("sounds/red.mp3");
@@ -7,23 +8,18 @@ let blueSound = new Audio("sounds/blue.mp3");
 let greenSound = new Audio("sounds/green.mp3");
 let yellowSound = new Audio("sounds/yellow.mp3");
 let wrongSound = new Audio("sounds/wrong.mp3");
-// redSound.play();
 
+// random color generator for sequencing
 function nextSequence() {
 	let randomNum = Math.floor(Math.random() * 4) + 0;
-	// console.log(randomNum);
 	let randomChosenColor = buttonColors[randomNum];
 	gamePattern.push(randomChosenColor);
 	console.log(randomChosenColor)
-	// playSound(randomChosenColor)
 	return randomChosenColor;
-	
 }
 
-
+// function to play sound for appropriate color
 function playSound(color) {
-	
-	// console.log(color);
 	switch (color) {
 		case "red":
 			redSound.play().then(r => {
@@ -48,16 +44,9 @@ function playSound(color) {
 	}
 }
 
-
-//
-// $('#red').click(function (e) {
-// 	redSound.play();
-// })
-
-
+// click event to play sound
 $('div').click(function (e) {
 	console.log(e);
 	playSound(e.target.id);
-	// console.log($(this).id);
-	// $(this).fadeOut(100).fadeIn(100);
+	$('#' + e.target.id).fadeOut(100).fadeIn(100);
 })
