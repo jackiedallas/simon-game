@@ -63,12 +63,12 @@ $('.btn').click(function () {
 	playSound(userChosenColor);
 	animatePress(userChosenColor);
 	userClickedPattern.push(userChosenColor);
-	checkAnswer(userClickedPattern[userClickedPattern -1 ])
+	checkAnswer(userClickedPattern.length - 1)
 	// console.log(userClickedPattern);
 })
 
 function checkAnswer(currentLevel) {
-	
+	console.log(currentLevel);
 	// if statement to check if most recent answer is the same as game answer
 	if (gamePattern[currentLevel] === userClickedPattern[currentLevel]) {
 		console.log("success")
@@ -78,6 +78,9 @@ function checkAnswer(currentLevel) {
 		}
 	} else {
 		console.log("wrong")
+		wrongSound.play();
+		$('body').addClass("game-over");
+		setTimeout(() => {$('body').removeClass("game-over")});
 	}
 }
 
