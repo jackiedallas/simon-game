@@ -67,6 +67,7 @@ $('.btn').click(function () {
 	// console.log(userClickedPattern);
 })
 
+// function to check user answers
 function checkAnswer(currentLevel) {
 	console.log(currentLevel);
 	// if statement to check if most recent answer is the same as game answer
@@ -80,16 +81,26 @@ function checkAnswer(currentLevel) {
 		console.log("wrong")
 		wrongSound.play();
 		$('body').addClass("game-over");
-		setTimeout(() => {$('body').removeClass("game-over")});
+		setTimeout(() => {$('body').removeClass("game-over")}, 200);
+		$('h1').html("Game Over, Press Any Key to Restart")
+		startOver();
 	}
 }
 
+//function to start game over
+function startOver() {
+	level = 0;
+	gamePattern = [];
+	gameStarted = false;
+	
+}
+
+// event listener to start game
 $(document).keypress(function () {
 	if (!gameStarted) {
 		$('h1').html("Level " + level);
 		nextSequence();
 		gameStarted = true;
 	}
-	// level++;
 })
 
